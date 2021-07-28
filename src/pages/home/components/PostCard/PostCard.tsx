@@ -1,5 +1,5 @@
 import * as S from './PostCard.style'
-
+import { BsHeartFill } from 'react-icons/bs'
 export default function PostCard() {
   return (
     <S.Container>
@@ -21,7 +21,9 @@ export default function PostCard() {
         </S.Paragraph>
         <S.TimeStemp>2021년 7월 28일</S.TimeStemp>
       </S.ContentWrapper>
-      <S.LikeBox>하트</S.LikeBox>
+      <S.LikeBox>
+        <BsHeartFill />
+      </S.LikeBox>
     </S.Container>
   )
 }

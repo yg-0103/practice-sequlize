@@ -62,4 +62,9 @@ export const LikeBox = styled.div`
   padding: 1rem;
   margin-top: 1rem;
   border-top: 1px solid #aaa;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
 `
