@@ -19,11 +19,12 @@ export default function PostCard() {
           타입스크립트를 배워보자타입스크립트를 배워보자 타입스크립트를 배워보자 타입스크립트를
           배워보자
         </S.Paragraph>
-        <S.TimeStemp>2021년 7월 28일</S.TimeStemp>
+        <S.TimeStemp>
+          2021년 7월 28일
+          <BsHeartFill />
+        </S.TimeStemp>
       </S.ContentWrapper>
-      <S.LikeBox>
-        <BsHeartFill />
-      </S.LikeBox>
+      <S.LikeBox></S.LikeBox>
     </S.Container>
   )
 }

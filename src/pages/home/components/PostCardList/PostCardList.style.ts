@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
 export const Section = styled.section`
+  display: flex;
+  max-width: 100%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
   padding: 3rem;
-  background-color: #eee;
 `
 
 export const Container = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 30rem);
-  grid-column-gap: 2rem;
-  grid-row-gap: 3rem;
+  display: flex;
+  flex-direction: column;
   max-width: 100rem;
-  margin: 2rem auto 0;
-  align-items: center;
-  justify-content: center;
 `

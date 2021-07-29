@@ -2,12 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.li`
   display: flex;
-  flex-direction: column;
-  min-height: 36rem;
-  border: 2px solid #aaa;
-  border-radius: 2rem;
+  margin: 3rem 0;
+  padding-right: 3rem;
+  border: 1px solid #aaa;
+  border-radius: 1rem;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
   transition: 0.4s;
+  cursor: pointer;
   background-color: #fff;
   overflow: hidden;
 
@@ -17,23 +18,27 @@ export const Container = styled.li`
 `
 
 export const ImageWrapper = styled.div`
-  transform: translateY(-1rem);
+  max-width: 20rem;
+  flex-shrink: 0;
 
   img {
     width: 100%;
+    height: 100%;
   }
 `
 
 export const ContentWrapper = styled.div`
-  padding: 0.5rem 2rem;
+  padding: 2.5rem 0 2.5rem 2.5rem;
 `
 
 export const Title = styled.h2`
+  display: -webkit-box;
   color: #434949;
   font-size: 2rem;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `
 
 export const Paragraph = styled.p`
@@ -48,23 +53,19 @@ export const Paragraph = styled.p`
 `
 
 export const TimeStemp = styled.span`
-  display: block;
-  font-size: 1.2rem;
-  color: rgb(125, 130, 135);
-`
-
-export const LikeBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  color: red;
+  justify-content: space-between;
   padding: 1rem;
   margin-top: 1rem;
-  border-top: 1px solid #aaa;
+  font-size: 1.4rem;
+  color: rgb(125, 130, 135);
 
   svg {
+    color: red;
     width: 2rem;
     height: 2rem;
   }
 `
+
+export const LikeBox = styled.div``
