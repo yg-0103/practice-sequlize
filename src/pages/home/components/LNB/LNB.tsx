@@ -6,7 +6,7 @@ export default function LNB() {
     <S.Container>
       <S.Navigation>
         <S.NavigationItem>
-          리액트 <AiOutlineRightCircle />{' '}
+          리액트 <AiOutlineRightCircle />
         </S.NavigationItem>
         <S.NavigationItem>
           타입스크립트 <AiOutlineRightCircle />

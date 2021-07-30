@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.li`
   display: flex;
-  margin: 3rem 0;
+  margin: 1rem 0;
   padding-right: 3rem;
   border: 1px solid #aaa;
   border-radius: 1rem;
