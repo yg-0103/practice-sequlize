@@ -3,6 +3,7 @@ import React from 'react'
 import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor'
 import { TuiEditorWithForwardedProps } from './MarkdownEditorWrapper'
 import '@toast-ui/editor/dist/toastui-editor.css'
+import * as S from './MarkdownEditor.style'
 interface EditorPropsWithHandlers extends EditorProps {
   onChange?(value: string): void
 }
@@ -20,9 +21,7 @@ interface Props extends EditorProps {
   valueType?: 'markdown' | 'html'
 }
 
-export default function MarkdownEditor(props: Props) {
-  const { initialValue, previewStyle, height, initialEditType, useCommandShortcut } = props
-
+export default function MarkdownEditor({ onChange }: Props) {
   const editorRef = React.useRef<EditorType>()
   const handleChange = React.useCallback(() => {
     if (!editorRef.current) {
@@ -30,22 +29,19 @@ export default function MarkdownEditor(props: Props) {
     }
 
     const instance = editorRef.current.getInstance()
-    const valueType = props.valueType || 'markdown'
 
-    props.onChange(valueType === 'markdown' ? instance.getMarkdown() : instance.getHTML())
-  }, [props, editorRef])
+    onChange(instance.getHTML())
+  }, [onChange])
 
   return (
-    <div>
+    <S.Container>
       <EditorWithForwardedRef
-        {...props}
-        initialValue={initialValue || 'hello react editor world!'}
-        previewStyle={previewStyle || 'vertical'}
-        height={height || '600px'}
-        initialEditType={initialEditType || 'markdown'}
+        previewStyle={'vertical'}
+        height="600px"
+        initialEditType="markdown"
         ref={editorRef}
         onChange={handleChange}
       />
-    </div>
+    </S.Container>
   )
 }
