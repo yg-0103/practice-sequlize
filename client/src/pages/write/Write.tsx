@@ -5,7 +5,7 @@ export default function Write() {
   return (
     <>
       <Header />
-      <MarkdownEditor />
+      <MarkdownEditor onChange={(v) => console.log(v)} />
     </>
   )
 }
