@@ -4,12 +4,13 @@ import * as S from './Button.style'
 interface Props {
   children: React.ReactNode
   type?: 'button' | 'submit'
+  color?: string
   onClick?: (e: MouseEvent) => void
 }
 
-export default function Button({ children, type, onClick }: Props) {
+export default function Button({ children, type, onClick, color = '#fff' }: Props) {
   return (
-    <S.Button type={type} onClick={onClick}>
+    <S.Button type={type} onClick={onClick} color={color}>
       {children}
     </S.Button>
   )
