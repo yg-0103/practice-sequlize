@@ -3,7 +3,7 @@ import Input from '@components/Input'
 import MarkdownEditor from './components/MarkdownEditor'
 import * as CS from './common.style'
 import Button from '@components/Button'
-import { useForm } from 'react-hook-form'
+import { useForm, UseFormRegisterReturn } from 'react-hook-form'
 
 export interface FormData {
   title: string
