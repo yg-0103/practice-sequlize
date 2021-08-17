@@ -1,6 +1,20 @@
 import * as S from './PostCard.style'
 import { BsHeartFill } from 'react-icons/bs'
-export default function PostCard() {
+
+interface Props {
+  data: {
+    UserId: number | null
+    content: React.ReactNode
+    createdAt: string
+    hashTag: string
+    id: number
+    image: string | null
+    title: string
+    updateAt: string
+  }
+}
+
+export default function PostCard({ data }: Props) {
   return (
     <S.Container>
       <S.ImageWrapper>
@@ -10,17 +24,10 @@ export default function PostCard() {
         />
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Title>타입스크립트를 배워보자 타입스크립트를 배워보자 타입스크립트를 배워보자</S.Title>
-        <S.Paragraph>
-          타입스크립트를 배워보자 타입스크립트를 배워보자 타입스크립트를 배워보자타입스크립트를
-          배워보자 타입스크립트를 배워보자 타입스크립트를 배워보자타입스크립트를 배워보자
-          타입스크립트를 배워보자 타입스크립트를 배워보자타입스크립트를 배워보자 타입스크립트를
-          배워보자 타입스크립트를 배워보자타입스크립트를 배워보자 타입스크립트를 배워보자
-          타입스크립트를 배워보자타입스크립트를 배워보자 타입스크립트를 배워보자 타입스크립트를
-          배워보자
-        </S.Paragraph>
+        <S.Title>{data.title}</S.Title>
+        <S.Paragraph>{data.content}</S.Paragraph>
         <S.TimeStemp>
-          2021년 7월 28일
+          {data.createdAt}
           <BsHeartFill />
         </S.TimeStemp>
       </S.ContentWrapper>

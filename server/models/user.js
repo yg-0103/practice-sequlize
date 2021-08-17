@@ -21,10 +21,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  User.associate = (db) => {
-    // user 가 여러개의 post 를 가질 수 있음
-    db.Post.hasMany(db.Post);
-  };
-
   return User;
 };

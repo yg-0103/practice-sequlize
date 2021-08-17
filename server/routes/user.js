@@ -2,9 +2,27 @@ const express = require("express");
 const bycrypt = require("bcrypt");
 const { User } = require("../models");
 const passport = require("passport");
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
-router.post("/login", (req, res, next) => {
+router.get("/", async (req, res, next) => {
+  try {
+    if (!req.user) return res.json(null);
+    const userWithoutPassword = await User.findOne({
+      where: { id: user.id },
+      attributes: {
+        exclude: ["password"],
+      },
+    });
+
+    return res.json(userWithoutPassword);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+
+router.post("/login", isNotLoggedIn, (req, res, next) => {
   passport.authenticate("local", (serverError, user, clientError) => {
     if (serverError) {
       console.error(err);
@@ -20,12 +38,24 @@ router.post("/login", (req, res, next) => {
         return next(loginErr);
       }
 
-      return res.json(user);
+      const userWithoutPassword = await User.findOne({
+        where: { id: user.id },
+        attributes: {
+          exclude: ["password"],
+        },
+      });
+      return res.json(userWithoutPassword);
     });
   })(req, res, next);
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.send("success");
+});
+
+router.post("/signup", isNotLoggedIn, async (req, res, next) => {
   try {
     // 이메일 중복 찾기
     const exUser = await User.findOne({

@@ -5,7 +5,7 @@ import { TuiEditorWithForwardedProps } from './MarkdownEditorWrapper'
 import '@toast-ui/editor/dist/toastui-editor.css'
 import * as S from './MarkdownEditor.style'
 interface EditorPropsWithHandlers extends EditorProps {
-  onChange?(value: string): void
+  onChange?(value: React.ReactNode): void
 }
 const Editor = dynamic<TuiEditorWithForwardedProps>(() => import('./MarkdownEditorWrapper'), {
   ssr: false,

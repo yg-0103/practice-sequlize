@@ -3,30 +3,96 @@ import Input from '@components/Input'
 import MarkdownEditor from './components/MarkdownEditor'
 import * as CS from './common.style'
 import Button from '@components/Button'
-import { useForm, UseFormRegisterReturn } from 'react-hook-form'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 
-export interface FormData {
+export interface PostData {
   title: string
+  value: string
   content: React.ReactNode
+  hashTags: string[]
 }
 
 export default function Write() {
-  const { register, handleSubmit } = useForm<FormData>({ mode: 'onBlur' })
+  const [postData, setPostData] = useState<PostData>({
+    value: '',
+    hashTags: [],
+    title: '',
+    content: null,
+  })
+  const router = useRouter()
+  const { value, hashTags, title, content } = postData
 
-  const onSubmit = (form: FormData) => console.log(form)
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (['Enter', ' '].includes(e.key)) {
+      setPostData({
+        ...postData,
+        hashTags: [...hashTags, value.replaceAll('#', '')],
+        value: '',
+      })
+    }
+  }
+
+  const handleChangeContent = (content: React.ReactNode) => {
+    setPostData({
+      ...postData,
+      content,
+    })
+  }
+
+  const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setPostData({
+      ...postData,
+      value: e.target.value,
+    })
+  }
+
+  const handleChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setPostData({
+      ...postData,
+      title: e.target.value,
+    })
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const post = await axios.post('http://localhost:3065/post', {
+        ...postData,
+        hashTags: JSON.stringify(hashTags),
+      })
+      router.push('/')
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <Header />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input id="title" placeholder="제목을 입력해주세요." register={register('title')} />
-        <MarkdownEditor onChange={(v) => console.log(v)} />
-        <CS.ButtonGroup>
-          <Button type="submit" color="#000">
-            저장
-          </Button>
-          <Button color="#000">취소</Button>
-        </CS.ButtonGroup>
-      </form>
+      <Input placeholder="제목을 입력해주세요." value={title} onChange={handleChangeTitle} />
+      <CS.HashTagWrapper>
+        {hashTags.map((hashTag, idx) => (
+          <CS.HashTag key={idx}>{hashTag}</CS.HashTag>
+        ))}
+        <Input
+          style={{ fontSize: '2rem' }}
+          placeholder="태그를 입력해주세요."
+          onKeyDown={handleKeyDown}
+          value={value}
+          onChange={handleChangeValue}
+        />
+      </CS.HashTagWrapper>
+
+      <MarkdownEditor onChange={handleChangeContent} />
+      <CS.ButtonGroup>
+        <Button type="button" color="#000" onClick={handleSubmit}>
+          저장
+        </Button>
+        <Button color="#000" onClick={() => router.back()}>
+          취소
+        </Button>
+      </CS.ButtonGroup>
     </>
   )
 }

@@ -21,6 +21,7 @@ passportConfig();
 app.use(
   cors({
     origin: "*",
+    // credentials: true, // 쿠키포함
   })
 );
 app.use(express.json());
