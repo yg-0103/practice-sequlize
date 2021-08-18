@@ -1,31 +1,26 @@
 import * as S from './LNB.style'
-import { AiOutlineRightCircle } from 'react-icons/ai'
+import { FcNext } from 'react-icons/fc'
+import { useRecoilValueLoadable } from 'recoil'
+import { postDatas } from '@store/atoms'
+import { Post } from '@store/models'
 
 export default function LNB() {
+  const post = useRecoilValueLoadable(postDatas)
+
+  if (!post.contents.length) return null
+
+  const hashTags = [
+    ...new Set((post.contents as Post[]).map((content) => JSON.parse(content.hashTag)).flat()),
+  ]
+
   return (
     <S.Container>
       <S.Navigation>
-        <S.NavigationItem>
-          리액트 <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          타입스크립트 <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          자바스크립트 <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          넥스트 <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          HTML <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          CSS <AiOutlineRightCircle />
-        </S.NavigationItem>
-        <S.NavigationItem>
-          알고리즘 <AiOutlineRightCircle />
-        </S.NavigationItem>
+        {hashTags.map((hashTag, idx) => (
+          <S.NavigationItem key={idx}>
+            {hashTag} <FcNext />
+          </S.NavigationItem>
+        ))}
       </S.Navigation>
     </S.Container>
   )

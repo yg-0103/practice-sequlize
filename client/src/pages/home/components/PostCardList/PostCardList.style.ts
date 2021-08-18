@@ -2,15 +2,17 @@ import styled from 'styled-components'
 
 export const Section = styled.section`
   display: flex;
-  max-width: 100%;
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  margin: 0 auto;
+  max-width: 120rem;
 `
 
 export const Container = styled.ul`
   display: flex;
+  row-gap: 3rem;
   flex-direction: column;
-  max-width: 100rem;
+  justify-content: center;
+  width: 100%;
 `

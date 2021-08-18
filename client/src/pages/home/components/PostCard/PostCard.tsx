@@ -1,33 +1,25 @@
 import * as S from './PostCard.style'
 import { BsHeartFill } from 'react-icons/bs'
+import { Post } from '@store/models'
 
 interface Props {
-  data: {
-    UserId: number | null
-    content: React.ReactNode
-    createdAt: string
-    hashTag: string
-    id: number
-    image: string | null
-    title: string
-    updateAt: string
-  }
+  post: Post
 }
 
-export default function PostCard({ data }: Props) {
+export default function PostCard({ post }: Props) {
   return (
     <S.Container>
       <S.ImageWrapper>
         <img
-          src="http://tlog.tammolo.com/static/typescript-f5e33258b60ea94e5aa81b55a05a22dd.jpeg"
-          alt="ts"
+          src="https://media.vlpt.us/images/jini_eun/post/107f5cfb-e97c-4c4c-b997-06098062e5b3/image.png"
+          alt="react"
         />
       </S.ImageWrapper>
       <S.ContentWrapper>
-        <S.Title>{data.title}</S.Title>
-        <S.Paragraph>{data.content}</S.Paragraph>
+        <S.Title>{post.title}</S.Title>
+        <S.Paragraph>{post.content.replace(/<[^>]*>/g, '')}</S.Paragraph>
         <S.TimeStemp>
-          {data.createdAt}
+          {post.createdAt.slice(0, 10)}
           <BsHeartFill />
         </S.TimeStemp>
       </S.ContentWrapper>

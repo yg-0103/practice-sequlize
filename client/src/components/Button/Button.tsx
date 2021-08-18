@@ -8,7 +8,7 @@ interface Props {
   onClick?: (e: MouseEvent) => void
 }
 
-export default function Button({ children, type, onClick, color = '#fff' }: Props) {
+export default function Button({ children, type, onClick, color = '#aaa' }: Props) {
   return (
     <S.Button type={type} onClick={onClick} color={color}>
       {children}

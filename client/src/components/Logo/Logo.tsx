@@ -1,9 +1,10 @@
 import * as S from './Logo.style'
+import Link from 'next/link'
 
 export default function Logo() {
   return (
-    <S.Logo>
-      DEV<span>LOG</span>
-    </S.Logo>
+    <Link href="/" passHref>
+      <S.Logo>YLOG</S.Logo>
+    </Link>
   )
 }

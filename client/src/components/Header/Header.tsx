@@ -9,7 +9,9 @@ export default function Header() {
       <S.Container>
         <Logo />
         <Link href="/write" passHref>
-          <Button onClick={() => console.log('hi')}>글쓰기</Button>
+          <a>
+            <Button onClick={() => console.log('hi')}>글쓰기</Button>
+          </a>
         </Link>
       </S.Container>
     </S.Header>

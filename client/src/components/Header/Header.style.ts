@@ -2,9 +2,8 @@ import styled from 'styled-components'
 
 export const Header = styled.header`
   padding: 2rem;
-  background-color: #373943;
   border-bottom: 1px solid #eee;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 `
 
 export const Container = styled.div`
@@ -12,5 +11,5 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  width: 100%;
+  max-width: 120rem;
 `

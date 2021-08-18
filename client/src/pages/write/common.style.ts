@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Section = styled.section`
+  max-width: 120rem;
+  margin: 0 auto;
   padding: 2rem;
 `
 
@@ -17,6 +19,10 @@ export const ButtonGroup = styled.div`
 export const HashTagWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  div:last-child {
+    flex: 1;
+  }
 `
 
 export const HashTag = styled.div`

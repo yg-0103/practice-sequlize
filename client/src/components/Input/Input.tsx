@@ -20,10 +20,10 @@ function Input({ label, type = 'text', placeholder, style, onKeyDown, onChange, 
         <S.Input
           type={type}
           placeholder={placeholder}
-          style={style}
           value={value}
           onKeyPress={onKeyDown}
           onChange={onChange}
+          style={style}
         />
       </S.Label>
     </S.Container>
