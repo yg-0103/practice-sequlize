@@ -15,7 +15,7 @@ export const getPosts = async () => {
   }
 }
 
-export const postData = async (post: PostData) => {
+export const postPost = async (post: PostData) => {
   try {
     await API.post('/post', {
       ...post,

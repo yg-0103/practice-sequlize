@@ -23,7 +23,7 @@ export default function Write() {
   })
   const router = useRouter()
   const { value, hashTags, title, content } = postData
-  console.log(content)
+
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (['Enter', ' '].includes(e.key)) {
       setPostData({

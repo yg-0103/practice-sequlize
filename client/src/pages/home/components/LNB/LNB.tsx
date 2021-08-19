@@ -5,12 +5,12 @@ import { postDatas } from '@store/atoms'
 import { Post } from '@store/models'
 
 export default function LNB() {
-  const post = useRecoilValueLoadable(postDatas)
+  const posts = useRecoilValueLoadable(postDatas)
 
-  if (!post.contents.length) return null
+  if (posts.state === 'loading') return null
 
   const hashTags = [
-    ...new Set((post.contents as Post[]).map((content) => JSON.parse(content.hashTag)).flat()),
+    ...new Set((posts.contents as Post[]).map((content) => JSON.parse(content.hashTag)).flat()),
   ]
 
   return (

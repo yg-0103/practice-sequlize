@@ -8,7 +8,7 @@ import { Post } from '@store/models'
 export default function PostCardList() {
   const posts = useRecoilValueLoadable(postDatas)
 
-  if (!posts.contents.length) return null
+  if (posts.state === 'loading') return null
 
   return (
     <S.Section>
